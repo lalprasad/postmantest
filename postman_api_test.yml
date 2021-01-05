@@ -27,7 +27,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifact - Postman test
     inputs:
-      PathtoPublish: postman
+      PathtoPublish: /
       ArtifactName: Postman test
   - task: PublishTestResults@1
     displayName: 'Publish Test Results '
