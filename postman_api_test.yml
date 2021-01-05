@@ -20,10 +20,10 @@ jobs:
   - task: CmdLine@2
     displayName: Run Api Tests
     inputs:
-      script: >+
+      script: |
         newman run -e StarterAPIs.postman_collection.json Walkthrough_StarterAPIs.postman_environment.json --reporters cli,junit --reporter-junit-export result.xml
-
-      workingDirectory: postman
+        echo Newman tests run
+      #workingDirectory: postman
   - task: PublishBuildArtifacts@1
     displayName: Publish Artifact - Postman test
     inputs:
