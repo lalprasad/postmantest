@@ -1,8 +1,10 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "0124f102-6ed8-4c2b-ab9c-473903ac2d7d",
 		"name": "StarterAPIs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "7ce39421-d726-204c-efe6-fcee5a8b97fc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -11,30 +13,24 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a406e0cc-054e-40b9-95a1-a8d1c228762b",
+						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});"
-						],
-						"type": "text/javascript"
+						]
 					}
 				}
 			],
 			"request": {
+				"url": "{{url}}/api/v1/employees",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{url}}/api/v1/employees",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"employees"
-					]
-				}
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		},
@@ -44,7 +40,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3728a484-a9c7-44fc-a352-53dd639c3fd5",
+						"type": "text/javascript",
 						"exec": [
 							"pm.test('status code is 200', function() {\r",
 							"    pm.response.to.have.status\r",
@@ -55,82 +51,20 @@
 							"    pm.expect(jsonData.data.id).above(0);\r",
 							"});\r",
 							"\r",
-							"var schema =\r",
-							"  {\r",
-							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
-							"  \"type\": \"object\",\r",
-							"  \"properties\": {\r",
-							"    \"status\": {\r",
-							"      \"type\": \"string\"\r",
-							"    },\r",
-							"    \"data\": {\r",
-							"      \"type\": \"object\",\r",
-							"      \"properties\": {\r",
-							"        \"id\": {\r",
-							"          \"type\": \"integer\"\r",
-							"        },\r",
-							"        \"employee_name\": {\r",
-							"          \"type\": \"string\"\r",
-							"        },\r",
-							"        \"employee_salary\": {\r",
-							"          \"type\": \"integer\"\r",
-							"        },\r",
-							"        \"employee_age\": {\r",
-							"          \"type\": \"integer\"\r",
-							"        },\r",
-							"        \"profile_image\": {\r",
-							"          \"type\": \"string\"\r",
-							"        }\r",
-							"      },\r",
-							"      \"required\": [\r",
-							"        \"id\",\r",
-							"        \"employee_name\",\r",
-							"        \"employee_salary\",\r",
-							"        \"employee_age\",\r",
-							"        \"profile_image\"\r",
-							"      ]\r",
-							"    },\r",
-							"    \"message\": {\r",
-							"      \"type\": \"string\"\r",
-							"    }\r",
-							"  },\r",
-							"  \"required\": [\r",
-							"    \"status\",\r",
-							"    \"data\",\r",
-							"    \"message\"\r",
-							"  ]\r",
-							"}\r",
-							"var json = pm.response.json() \r",
-							"pm.test('schema is valid', function() {\r",
-							"    pm.expect(tv4.validate(json, schema)).to.be.true;\r",
-							"});"
-						],
-						"type": "text/javascript"
+							""
+						]
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
+				"url": "{{url}}/api/v1/employee/{{id_get}}",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "{{url}}/api/v1/employee/{{id_get}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"employee",
-						"{{id_get}}"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
@@ -140,7 +74,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ef00d60e-89af-419b-9a71-df07dab9b032",
+						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Successful response\", function () {",
 							"    pm.expect(pm.response.text()).to.include(\"success\");",
@@ -155,37 +89,21 @@
 							"    pm.expect(jsonData.data.employee_name).to.equal(pm.variables.get(\"name\"));",
 							"    pm.expect(jsonData.data.employee_salary).to.equal(pm.variables.get(\"salary\"))",
 							"});"
-						],
-						"type": "text/javascript"
+						]
 					}
 				}
 			],
 			"request": {
+				"url": "{{url}}/api/v1/create",
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"employee_name\": \"{{name}}\",\n    \"employee_salary\": \"{{salary}}\",\n    \"employee_age\": \"{{age}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n    \"employee_name\": \"{{name}}\",\n    \"employee_salary\": \"{{salary}}\",\n    \"employee_age\": \"{{age}}\"\n}"
 				},
-				"url": {
-					"raw": "{{url}}/api/v1/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"create"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
